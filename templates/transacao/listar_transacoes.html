@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Transações</title>
+</head>
+<body>
+    <h1>Listar Transações</h1>
+    <ul>
+        {% for transacao in transacoes %}
+            <div>
+                {{ transacao.descricao }} - {{ transacao.valor }} - {{ transacao.conta }}
+                {% if transacao.consolidada %}
+                    {% if not transacao.feita %}
+                        <form id="form-{{ transacao.id }}" method="post" action="{% url 'marcar_feito' transacao.id %}">
+                            {% csrf_token %}
+                            <button type="button" onclick="confirmarFeito('{{ transacao.id }}')">Feito</button>
+                        </form>
+                    {% else %}
+                        <span>Feito</span>  
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'criar_transacao' %}">Criar Nova Transação</a>
+
+    <script>
+        function confirmarFeito(transacaoId) {
+            console.log("ID JS", transacaoId)
+            if (confirm("Deseja realizar esta transação?")) {
+                document.getElementById('form-' + transacaoId).submit();
+            }
+        }
+    </script>
+</body>
+</html>

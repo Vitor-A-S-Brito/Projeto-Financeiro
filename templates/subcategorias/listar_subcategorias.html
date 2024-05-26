@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Categorias</title>
+</head>
+<body>
+    <h1>Listar Subcategorias da Categoria {{ categoria.nome }}</h1>
+    <ul>
+        {% for subcategoria in subcategorias %}
+            <li>{{ subcategoria.nome }}</li>
+        {% endfor %}
+    </ul>
+    <button onclick="window.location.href='/categorias/subcategorias/criar/{{ categoria.id }}/'" class="btn btn-primary">Criar Categoria</button>
+</body>
+</html>

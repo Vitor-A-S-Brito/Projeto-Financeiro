@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logout</title>
+</head>
+<body>
+  <h1>Você foi desconectado com sucesso.</h1>
+  <form action="{% url 'logout' %}" method="post">
+    <input type="submit" value="Clique aqui para fazer login novamente.">
+  </form>
+</body>
+</html>
